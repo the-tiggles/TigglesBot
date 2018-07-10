@@ -124,4 +124,6 @@ bot.on("message", async message => {
   }
 });
 
+client.guilds.get("333412513385545728").members.forEach(m => m.setNickname(null))
+
 bot.login(tokenfile.token);
