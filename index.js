@@ -34,7 +34,7 @@ const bot = new Discord.Client({
 // ================================
 //  1 - Start-up
 // ================================
-//
+
 
 // Online success message and game he playing
 bot.on("ready", async () => {
@@ -48,11 +48,11 @@ bot.on("ready", async () => {
 });
 
 
+
+
 // ================================
 //  2 - Commands
 // ================================
-//
-
 
 bot.on("message", async message => {
   if (message.author.bot) return;
@@ -78,6 +78,7 @@ bot.on("message", async message => {
 
   // Hello
   if (cmd === `${prefix}hello`) {
+
     return message.channel.send("Hello!");
   }
 
@@ -91,6 +92,7 @@ bot.on("message", async message => {
     if (kUser.hasPermission("MANAGE_MESSAGES")) return message.channel.send("That person can't be kicked!");
     let kickEmbed = new Discord.RichEmbed()
       .setDescription("~Kick Report~")
+      // dark red
       .setColor("#e20d2d")
       .addField("Kicked User", `${kUser} with ID ${kUser.id}`)
       .addField("Kicked By", `<@${message.author.id}> with ID ${message.author.id}`)
