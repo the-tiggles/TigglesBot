@@ -17,6 +17,14 @@ bot.on("ready", async () => {
   // bot.user.setGame("Tickling!");
 });
 
+
+
+// bot username
+
+bot.on('ready', function() {
+  bot.user.setUsername("TigglesBot");
+});
+
 bot.on("message", async message => {
   if (message.author.bot) return;
   if (message.channel.type === "dm") return;
