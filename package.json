@@ -11,5 +11,13 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Tiggles",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tiggaaaaah/TigglesBot.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tiggaaaaah/TigglesBot/issues"
+  },
+  "homepage": "https://github.com/tiggaaaaah/TigglesBot#readme"
 }
