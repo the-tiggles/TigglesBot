@@ -15,6 +15,7 @@ bot.on("ready", async () => {
     type: "WATCHING"
   });
   // bot.user.setGame("Tickling!");
+  bot.user.setAvatar("./img/penguin-avatar.png");
 });
 
 
