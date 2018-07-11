@@ -39,15 +39,15 @@ const bot = new Discord.Client({
 // Online success message and game he playing
 bot.on("ready", async () => {
   console.log(`${bot.user.username} is online!`);
-  bot.user.setActivity("yo mama", {
+  bot.user.setActivity("your mom", {
     type: "LISTENING"
   });
   // bot.user.setGame("Tickling!");
-  bot.user.setAvatar("./img/penguin-avatar.png");
+  // bot.user.setAvatar("./img/penguin-avatar.png");
   bot.user.setUsername("TigglesBot");
 });
 
-
+ 
 
 
 // ================================
