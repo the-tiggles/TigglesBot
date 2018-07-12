@@ -81,7 +81,7 @@ bot.on("message", async message => {
   if (message.channel.type === "dm") {
     message.reply("lemme ask for you"); //Reply to the user via DM.
     console.log('\x1b[42m%s\x1b[0m', `(BotPM) ${message.author.username}: ${message.content}`); //This logs the message to the console.
-    let userid = bot.users.get("320721242833289229") //This get the user by their ID and assigns it to a variable.
+    let userid = bot.users.get("320721242833289229"); //This get the user by their ID and assigns it to a variable.
     return userid.send(`(BotPM) ${message.author.username}: ${message.content}`); //Send the username and message content to the user, using the userid object we created above.
   }
 
