@@ -25,12 +25,14 @@ fs.readdir("./commands/", (err, files) => {
     return
   }
   // this will spit out which commands were loaded
+  console.group("Commands");
   jsfile.forEach((f, i) => {
     let props = require(`./commands/${f}`);
-    console.log(`${f} loaded!`);
-
+    console.log(`${f} loaded`);
     bot.commands.set(props.help.name, props);
   });
+  console.groupEnd();
+
 
 });
 
@@ -57,7 +59,7 @@ fs.readdir("./commands/", (err, files) => {
 
 // Online success message and game he playing
 bot.on("ready", async () => {
-  console.log(`${bot.user.username} is ONLINE on ${bot.guilds.size} servers!`);
+  console.log(`${bot.user.username}: ONLINE (${bot.guilds.size})!`);
   bot.user.setActivity("your mom", {
     type: "LISTENING"
   });
