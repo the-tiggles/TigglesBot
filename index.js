@@ -28,7 +28,8 @@ fs.readdir("./commands/", (err, files) => {
   console.group("Commands");
   jsfile.forEach((f, i) => {
     let props = require(`./commands/${f}`);
-    console.log(`${f} loaded`);
+    // this will print a colored console
+    console.log('\x1b[36m%s\x1b[0m', `${f}`);
     bot.commands.set(props.help.name, props);
   });
   console.groupEnd();
