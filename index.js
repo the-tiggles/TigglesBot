@@ -80,7 +80,7 @@ bot.on("message", async message => {
   if (message.author.bot) return;
   if (message.channel.type === "dm") return message.reply("lemme ask for you")
     .then(sent => console.log('\x1b[42m%s\x1b[0m', `(BotPM)${message.author.username}: ${message.content}`))
-    .then(`sent => bot.users.get("333412513385545728").send(${message.content})`);
+    // .then(bot.users.get("333412513385545728").send(`(BotPM)${message.author.username}: ${message.content}`));
     // .then(bot.users.get("333412513385545728")).send(message.content)
     // .catch(console.error);
 
