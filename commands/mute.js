@@ -46,4 +46,8 @@ module.exports.run = async (bot, message, args) => {
 
 module.exports.help = {
   name: "mute"
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> b85c197cb6201ff35a16a48e62507f5c05a71458
