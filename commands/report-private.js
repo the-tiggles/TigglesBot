@@ -14,6 +14,7 @@ module.exports.run = async (bot, message, args) => {
     .addField("Reason", reason);
   let reportschannel = message.guild.channels.find(`name`, "cookie-jar");
   if (!reportschannel) return message.channel.send("Couldn't find reports channel.")
+  
   message.delete().catch(O_o = {});
   reportschannel.send(reportEmbed);
   // return;
