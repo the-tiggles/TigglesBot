@@ -2,7 +2,7 @@
  *
  * TigglesBot
  * @link https://github.com/tiggaaaaah/TigglesBot
- * Design/Dev: Tiggles
+ * Design/Dev: Tiggles 
  *
  */
 
@@ -79,10 +79,14 @@ bot.on("ready", async () => {
 bot.on("message", async message => {
   if (message.author.bot) return;
   if (message.channel.type === "dm") {
-    message.reply("lemme ask for you"); //Reply to the user via DM.
-    console.log('\x1b[42m%s\x1b[0m', `(BotPM) ${message.author.username}: ${message.content}`); //This logs the message to the console.
-    let userid = bot.users.get("320721242833289229"); //This get the user by their ID and assigns it to a variable.
-    return userid.send(`(BotPM) ${message.author.username}: ${message.content}`); //Send the username and message content to the user, using the userid object we created above.
+    //Reply to the user via DM.
+    message.reply("lemme ask for you"); 
+    //This logs the message to the console.
+    console.log('\x1b[42m%s\x1b[0m', `(BotPM) ${message.author.username}: ${message.content}`); 
+    //This get the user by their ID and assigns it to a variable.
+    let userid = bot.users.get("320721242833289229"); 
+    //Send the username and message content to the user
+    return userid.send(`(BotPM) ${message.author.username}: ${message.content}`); 
   }
 
   let prefix = botconfig.prefix;
@@ -96,10 +100,16 @@ bot.on("message", async message => {
   if (commandfile) commandfile.run(bot, message, args);
 
 
-  // this was commented out and moved to commands folder
+  // eyes everywhere
+  console.log(`[${message.channel.name}]${message.author.username}: ${message.content}`);
 
-  console.log(`${message.author.username}: ${message.content}`);
+  let string = message.content;
+  
+  let matchString = 'tickle';
 
+  if (string.toLowerCase().indexOf(matchString) != -1) { 
+    return message.channel.send("Tickle Tickle!");
+  } 
 
 
 });
