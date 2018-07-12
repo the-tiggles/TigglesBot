@@ -89,7 +89,7 @@ bot.on("message", async message => {
 
   // this was commented out and moved to commands folder
 
-  console.log(message.content);
+  console.log(`${message.author.username}: ${message.content}`);
 
 
 
