@@ -36,22 +36,45 @@ module.exports.run = async (bot, message, args) => {
 
   warnchannel.send(warnEmbed);
 
-  if(warns[wUser.id].warns == 2){
+  if(warns[wUser.id].warns == 1){
     let muterole = message.guild.roles.find(`name`, "muted");
     if(!muterole) return message.reply("You should create that role dude.");
 
     let mutetime = "10s";
     await(wUser.addRole(muterole.id));
-    message.channel.send(`<@${wUser.id}> has been temporarily muted`);
+    message.channel.send(`<@${wUser.id}> has been temporarily muted for 10s`);
 
     setTimeout(function(){
       wUser.removeRole(muterole.id)
-      message.reply(`<@${wUser.id}> has been unmuted.`)
+      message.reply(`<@${wUser.id}> has been unmuted. Stay classy.`)
     }, ms(mutetime))
   }
-  if(warns[wUser.id].warns == 3){
-    message.guild.member(wUser).ban(reason);
-    message.reply(`<@${wUser.id}> has been banned.`)
+  if(warns[wUser.id].warns == 2){
+    let muterole = message.guild.roles.find(`name`, "muted");
+    if(!muterole) return message.reply("You should create that role dude.");
+
+    let mutetime = "20s";
+    await(wUser.addRole(muterole.id));
+    message.channel.send(`<@${wUser.id}> has been temporarily muted for 20s`);
+
+    setTimeout(function(){
+      wUser.removeRole(muterole.id)
+      message.reply(`<@${wUser.id}> has been unmuted. Don't make me do it again!`)
+    }, ms(mutetime))
+  }
+
+  if(warns[wUser.id].warns >= 3){
+    let muterole = message.guild.roles.find(`name`, "muted");
+    if(!muterole) return message.reply("You should create that role dude.");
+
+    let mutetime = "30m";
+    await(wUser.addRole(muterole.id));
+    message.channel.send(`<@${wUser.id}> has been temporarily muted for 30m`);
+
+    setTimeout(function(){
+      wUser.removeRole(muterole.id)
+      message.reply(`<@${wUser.id}> has been unmuted. Bruv - stop being naughty`)
+    }, ms(mutetime))
   }
 
 }
