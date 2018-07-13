@@ -12,15 +12,15 @@ module.exports.run = async (bot, message, args) => {
 	if(wUser.hasPermission("ADMINISTRATOR")) return message.reply("They waaaay too kewl");
 	let reason = args.join(" ").slice(22);
 
-	if(!warns[wUser.id]) warns[wUser.id] = {
+	if(!warns[wUser.id]) warns[wUser.tag] = {
 		warns: 0
 	};
-	warns[wUser.id].warns++;
-	console.log(wUser);
-	console.log(wUser.tag);
+	warns[wUser.tag].warns++;
 	fs.writeFile("./warnings.json", JSON.stringify(warns), (err) => {
 		if (err) console.log(err);
 	});
+
+	console.log(wUser.tag);
 
 	let warnEmbed = new Discord.RichEmbed()
 		.setDescription("Warns")
@@ -28,7 +28,7 @@ module.exports.run = async (bot, message, args) => {
 		.setColor("#fc6400")
 		.addField("Warned User", wUser.tag)
 		.addField("Warned In", message.channel)
-		.addField("Number of Warnings", warns[wUser.id].warns)
+		.addField("Number of Warnings", warns[wUser.tag].warns)
 		.addField("Reason", reason);
 
 		let warnchannel = message.guild.channels.find(`name`, `naughty-or-nice`);
@@ -36,7 +36,7 @@ module.exports.run = async (bot, message, args) => {
 
 		warnchannel.send(warnEmbed);
 
-		if(warns[wUser.id].warns == 1) {
+		if(warns[wUser.tag].warns == 1) {
 			let muterole = message.guild.roles.find(`name`, "muted");
 			if (!muterole) return message.reply("You should create that role, bruv");
 
@@ -46,23 +46,10 @@ module.exports.run = async (bot, message, args) => {
 
 			setTimeout(function() {
 				wUser.removeRole(muterole.id)
-				message.reply(`<@${wUser.id}> has been unmuted.`)
+				message.reply(`<@${wUser.tag}> has been unmuted.`)
 			}, ms(mutetime));
 		}
 
-		if(warns[wUser.id].warns == 2) {
-			let muterole = message.guild.roles.find(`name`, "muted");
-			if (!muterole) return message.reply("You should create that role, bruv");
-
-			let mutetime = "2m";
-			await(wUser.addRole(muterole.id));
-			message.reply(`${wUser.tag} has been temporarily muted`);
-
-			setTimeout(function() {
-				wUser.removeRole(muterole.id)
-				message.reply(`<@${wUser.id}> has been unmuted.`)
-			}, ms(mutetime));
-		}
 }
 
 module.exports.help = {
