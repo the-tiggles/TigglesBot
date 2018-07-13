@@ -7,7 +7,7 @@ module.exports.run = async (bot, message, args) => {
 
 	// !warn @someone <reason>
 	if(!message.member.hasPermission("VIEW_AUDIT_LOG")) return message.reply("No can do, pal!");
-	let wUser = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
+	let wUser = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0])
 	if(!wUser) return message.reply("Couldnt find them, yo.");
 	if(wUser.hasPermission("ADMINISTRATOR")) return message.reply("They waaaay too kewl");
 	let reason = args.join(" ").slice();
