@@ -101,12 +101,10 @@ bot.on("message", async message => {
 
 
   // eyes everywhere
-  console.log(`[${message.channel.name}]${message.author.username}: ${message.content}`);
+  console.log(`[ ${message.guild} | ${message.channel.name} ] ${message.author.username}: ${message.content}`);
 
   let string = message.content;
-  
   let matchString = 'tickle';
-
   if (string.toLowerCase().indexOf(matchString) != -1) { 
     return message.channel.send("Tickle Tickle!");
   } 
