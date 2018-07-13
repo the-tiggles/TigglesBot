@@ -3,6 +3,7 @@ module.exports.run = async (bot, message, args) => {
 
 
 	// !roleadd @user Role Name
+	
 	if(!message.member.hasPermission("MANAGE_MEMBERS")) return message.reply("Sorry pal, you can't do that ");
 	let rMember = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
 	if(!rMember) return message.reply("Could't find that user, bruh.");
