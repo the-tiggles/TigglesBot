@@ -22,3 +22,12 @@
   },
   "homepage": "https://github.com/tiggaaaaah/TigglesBot#readme"
 }
+
+{
+  "name": "nodemon",
+  "homepage": "http://nodemon.io",
+  "nodemonConfig": {
+    "ignore": ["warnings.json"],
+    "delay": "2500"
+  }
+}
