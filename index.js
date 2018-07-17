@@ -44,7 +44,7 @@ fs.readdir("./commands/", (err, files) => {
 //
 // 1 - Start-up
 // 2 - Commands
-//
+// 3 - Events
 //
 //
 //
@@ -111,6 +111,31 @@ bot.on("message", async message => {
 
 
 });
+
+
+// ================================
+//  3 - Events
+// ================================
+
+
+bot.on("guildMemberAdd", async member => {
+  console.log(`${member.id} joined the server.`);
+  
+  let welcomechannel = member.guild.channels.find(`name`, "all-chat");
+  welcomechannel.send(`Welcome, ${member}! Check out our site at https://www.guilded.gg/tiggles to stay up-to-date with more of our shenanigans, and for News and Announcements!`);
+});
+
+
+
+bot.on("guildMemberRemove", async member => {
+  console.log(`${member.id} left the server.`);
+  
+  let welcomechannel = member.guild.channels.find(`name`, "all-chat");
+  welcomechannel.send(`${member} has left the building. Moment of Silence or nah?`);
+});
+
+
+
 
 
 bot.login(tokenfile.token);
