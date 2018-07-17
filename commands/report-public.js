@@ -13,7 +13,7 @@ module.exports.run = async (bot, message, args) => {
     .addField("Time", message.createdAt)
     .addField("Reason", reason);
   let reportschannel = message.guild.channels.find(`name`, "naughty-or-nice");
-  if (!reportschannel) return message.channel.send("Couldn't find reports channel.")
+  if (!reportschannel) return message.channel.send("Couldn't find reports channel.");
  
   message.delete().catch(O_o = {});
   reportschannel.send(reportEmbed);
