@@ -6,6 +6,24 @@
  *
  */
 
+ // ================================
+//  Index
+// ================================
+// 0 - Dependencies
+// 1 - Start-up & Status
+// 2 - Commands
+// 3 - Events
+//
+//
+//
+//
+//
+//
+
+// ================================
+//  0 - Dependencies
+// ================================
+
 const botconfig = require("./botconfig.json");
 const tokenfile = require("./token.json");
 const Discord = require("discord.js");
@@ -38,36 +56,23 @@ fs.readdir("./commands/", (err, files) => {
 });
 
 
-// ================================
-//  Index
-// ================================
-//
-// 1 - Start-up
-// 2 - Commands
-// 3 - Events
-//
-//
-//
-//
-//
-//
-
 
 // ================================
-//  1 - Start-up
+//  1 - Start-up & Status
 // ================================
 
 
 // Online success message and game he playing
 bot.on("ready", async () => {
   console.log(`${bot.user.username}: ONLINE (${bot.guilds.size})!`);
-  bot.user.setActivity("your mom", {
-    type: "LISTENING"
+  bot.user.setActivity("love games with your mom", {
+    type: "PLAYING"
   });
   // bot.user.setGame("Tickling!");
   // bot.user.setAvatar("./img/penguin-avatar.png");
   bot.user.setUsername("TigglesBot");
 });
+
 
 
 
@@ -103,6 +108,8 @@ bot.on("message", async message => {
   // eyes everywhere
   console.log(`[ ${message.guild} | ${message.channel.name} ] ${message.author.username}: ${message.content}`);
 
+
+  //finds the word tickle in any string input
   let string = message.content;
   let matchString = 'tickle';
   if (string.toLowerCase().indexOf(matchString) != -1) { 
@@ -123,6 +130,11 @@ bot.on("guildMemberAdd", async member => {
   
   let welcomechannel = member.guild.channels.find(`name`, "all-chat");
   welcomechannel.send(`Welcome, ${member}! Check out our site at https://www.guilded.gg/tiggles to stay up-to-date with more of our shenanigans, and for News and Announcements!`);
+
+  let newRole = member.guild.roles.find(`name`, "Happy to be here");
+  member.addRole(newRole); 
+  welcomechannel.send(`${member} is now ` + newRole + ` . Aren't we all?`);
+
 });
 
 
