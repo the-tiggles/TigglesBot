@@ -1,34 +1,29 @@
 {
-  "name": "tiggler",
-  "dependencies": {
-    "discord.js": "^11.3.2",
-    "ms": "^2.1.1"
-  },
+  "name": "tigglesbot",
   "version": "1.0.0",
   "description": "A bot for all things Tiggles.",
   "main": "index.js",
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js"
+    "start": "node index.js"
   },
-  "author": "Tiggles",
-  "license": "ISC",
+  "engines": {
+    "node": "8.4.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tiggaaaaah/TigglesBot.git"
   },
+  "keywords": [],
+  "author": "Tiggles",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/tiggaaaaah/TigglesBot/issues"
   },
-  "homepage": "https://github.com/tiggaaaaah/TigglesBot#readme"
-}
-
-{
-  "name": "nodemon",
-  "homepage": "http://nodemon.io",
-  "nodemonConfig": {
-    "ignore": ["warnings.json"],
-    "delay": "2500"
+  "homepage": "https://github.com/tiggaaaaah/TigglesBot#readme",
+  "dependencies": {
+    "discord.js": "^11.3.2",
+    "ms": "^2.1.1",
+    "superagent": "^3.8.3"
   }
 }
