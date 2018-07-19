@@ -94,13 +94,13 @@ bot.on("message", async message => {
     //Send the username and message content to the user
     return userid.send(`(BotPM) ${message.author.username}: ${message.content}`); 
   }
-
+ 
   let prefix = botconfig.prefix;
   let messageArray = message.content.split(" ");
   let cmd = messageArray[0];
   let args = messageArray.slice(1);
   let string = message.content;
- 
+    
 
   // eyes everywhere
     console.log(`[ ${message.guild} | ${message.channel.name} ] ${message.author.username}: ${message.content}`);
