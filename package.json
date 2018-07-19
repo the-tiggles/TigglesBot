@@ -28,7 +28,7 @@
   "name": "nodemon",
   "homepage": "http://nodemon.io",
   "nodemonConfig": {
-    "ignore": ["warnings.json"],
+    "ignore": ["warnings.json", "prefixes.json"],
     "delay": "2500"
   }
 }
