@@ -98,6 +98,11 @@ bot.on("message", async message => {
   let messageArray = message.content.split(" ");
   let cmd = messageArray[0];
   let args = messageArray.slice(1);
+  let string = message.content;
+
+
+  // eyes everywhere
+    console.log(`[ ${message.guild} | ${message.channel.name} ] ${message.author.username}: ${message.content}`);
 
   //force users to use the prefix we specify
   if(!message.content.startsWith(botconfig.prefix)) return;
@@ -109,15 +114,22 @@ bot.on("message", async message => {
   if (commandfile) commandfile.run(bot, message, args);
 
 
-  // eyes everywhere
-  console.log(`[ ${message.guild} | ${message.channel.name} ] ${message.author.username}: ${message.content}`);
+
 
 
   //finds the word tickle in any string input
-  let string = message.content;
+  
+
+
   let matchString = 'tickle';
   if (string.toLowerCase().indexOf(matchString) != -1) { 
     return message.channel.send("Tickle Tickle!");
+  }
+
+  //stop playing that video
+  let matchString2 = 'https://www.youtube.com/watch?v=K9bf4PT-aEk';
+  if (string.toLowerCase().indexOf(matchString2) != -1) { 
+    return message.channel.send("Bro, I swear...stop playing that stupid song!");
   } 
 
 

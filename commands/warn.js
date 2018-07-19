@@ -12,7 +12,7 @@ module.exports.run = async (bot, message, args) => {
   if(wUser.hasPermission("ADMINISTRATOR")) return message.reply("They waaaay too kewl");
   let reason = args.join(" ").slice(22);
 
-  if(!args[2]) return message.reply("They've been warned - but why?");
+  if(!args[2]) return message.reply("Guuuurl, you gotta gimme the deets!");
 
 
   if(!warns[wUser.id]) warns[wUser.id] = {
@@ -39,9 +39,15 @@ module.exports.run = async (bot, message, args) => {
 
   warnchannel.send(warnEmbed);
 
+
+  //First time offender
+
+
   if(warns[wUser.id].warns == 1){
     let muterole = message.guild.roles.find(`name`, "muted");
-    if(!muterole) return message.reply("You should create that role dude.");
+    if(!muterole) {
+      return message.reply("Sorry, no muted role to assign 'em to.");  
+    }
 
     let mutetime = "10s";
     await(wUser.addRole(muterole.id));
@@ -52,6 +58,9 @@ module.exports.run = async (bot, message, args) => {
       message.reply(`<@${wUser.id}> has been unmuted. Stay classy.`)
     }, ms(mutetime))
   }
+
+  // Second time offender 
+
   if(warns[wUser.id].warns == 2){
     let muterole = message.guild.roles.find(`name`, "muted");
     if(!muterole) return message.reply("You should create that role dude.");
@@ -66,6 +75,8 @@ module.exports.run = async (bot, message, args) => {
     }, ms(mutetime))
   }
 
+  // Third time offender
+  
   if(warns[wUser.id].warns >= 3){
     let muterole = message.guild.roles.find(`name`, "muted");
     if(!muterole) return message.reply("You should create that role dude.");
