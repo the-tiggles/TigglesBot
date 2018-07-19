@@ -4,11 +4,12 @@ module.exports.run = async (bot, message, args) => {
   let rUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
   if (!rUser) return message.channel.send("Couldn't find User.");
   let reason = args.join(" ").slice(22);
+  let theirPic = rUser.user.displayAvatarURL;
   let reportEmbed = new Discord.RichEmbed()
-    .setDescription("Report Summary")
+    .setAuthor(`${message.author.username}'s Report Summary`, `${message.author.avatarURL}`)
     .setColor("#e03721")
+    .setThumbnail(theirPic)
     .addField("Reported User", `${rUser} with ID: ${rUser.id}`)
-    .addField("Reported By", `${message.author} with ID: ${message.author.id}`)
     .addField("Channel", message.channel)
     .addField("Time", message.createdAt)
     .addField("Reason", reason);
@@ -17,6 +18,7 @@ module.exports.run = async (bot, message, args) => {
  
   message.delete().catch(O_o = {});
   reportschannel.send(reportEmbed);
+  console.log(theirPic);
 }
 
 module.exports.help = {

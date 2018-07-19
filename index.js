@@ -12,6 +12,7 @@
 // 0 - Dependencies
 // 1 - Start-up & Status
 // 2 - Commands
+//        --"Auto-Responses"
 // 3 - Events
 //
 //
@@ -105,6 +106,10 @@ bot.on("message", async message => {
     console.log(`[ ${message.guild} | ${message.channel.name} ] ${message.author.username}: ${message.content}`);
 
  
+
+        // 
+        //   - Auto Responses
+        // ================================
 
 
   //finds the word tickle in any string input

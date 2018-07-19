@@ -22,7 +22,6 @@ module.exports.run = async (bot, message, args) => {
 
     message.delete().catch(O_o = {});
     announceChannel.send(annembed);  
-  
 } 
 
 module.exports.help = {
