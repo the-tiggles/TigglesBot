@@ -104,9 +104,9 @@ bot.on("message", async message => {
 
   // eyes everywhere
     console.log(`[ ${message.guild} | ${message.channel.name} ] ${message.author.username}: ${message.content}`);
- 
    
-
+    
+  
         // 
         //   - Auto Responses
         // ================================
