@@ -12,6 +12,9 @@ module.exports.run = async (bot, message, args) => {
   if(wUser.hasPermission("ADMINISTRATOR")) return message.reply("They waaaay too kewl");
   let reason = args.join(" ").slice(22);
 
+  if(!args[2]) return message.reply("They've been warned - but why?");
+
+
   if(!warns[wUser.id]) warns[wUser.id] = {
     warns: 0
   };

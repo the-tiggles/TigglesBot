@@ -99,6 +99,10 @@ bot.on("message", async message => {
   let cmd = messageArray[0];
   let args = messageArray.slice(1);
 
+  //force users to use the prefix we specify
+  if(!message.content.startsWith(botconfig.prefix)) return;
+
+
 
   // instead of putting the commands in this file -
   let commandfile = bot.commands.get(cmd.slice(prefix.length));
