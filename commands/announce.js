@@ -8,7 +8,7 @@ module.exports.run = async (bot, message, args) => {
   if(!args[2]) return message.reply("Did you forget the announcement?");
   if(!message.member.hasPermission("ADMINISTRATOR")) return message.reply("No can do pal!");
   let theicon = message.guild.iconURL;
-  let announcement = args.slice(1).join(" ");
+  let announcement = args.slice(0).join(" ");
   let annembed = new Discord.RichEmbed()
     .setAuthor(`${message.author.username}`, `${message.author.avatarURL}`)
     .setColor("FFFFFF")
