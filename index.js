@@ -100,7 +100,7 @@ bot.on("message", async message => {
   let cmd = messageArray[0];
   let args = messageArray.slice(1);
   let string = message.content;
-
+ 
 
   // eyes everywhere
     console.log(`[ ${message.guild} | ${message.channel.name} ] ${message.author.username}: ${message.content}`);
