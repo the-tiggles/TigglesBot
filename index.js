@@ -164,7 +164,7 @@ bot.on("guildMemberAdd", async member => {
 
 });
 
-
+  
 
 bot.on("guildMemberRemove", async member => {
   console.log(`${member.id} left the server.`);
