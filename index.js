@@ -104,7 +104,32 @@ bot.on("message", async message => {
   // eyes everywhere
     console.log(`[ ${message.guild} | ${message.channel.name} ] ${message.author.username}: ${message.content}`);
 
-  //force users to use the prefix we specify
+ 
+
+
+  //finds the word tickle in any string input
+  let matchString = 'tickle';
+  if (string.toLowerCase().indexOf(matchString) != -1) { 
+    return message.channel.send("Tickle Tickle!");
+  }
+
+  //stop playing that video
+  let matchString2 = 'K9bf4PT';
+  if (string.indexOf(matchString2) !== -1) { 
+    return message.channel.send("Bro, I swear...stop playing that shitty song!");
+  }
+  let matchString3 = 'young signorino';
+  if (string.indexOf(matchString3) !== -1) { 
+    return message.channel.send("Bro, I swear...stop playing that shitty song!");
+  }  
+
+
+
+
+
+
+
+   //force users to use the prefix we specify
   if(!message.content.startsWith(botconfig.prefix)) return;
 
 
@@ -112,25 +137,6 @@ bot.on("message", async message => {
   // instead of putting the commands in this file -
   let commandfile = bot.commands.get(cmd.slice(prefix.length));
   if (commandfile) commandfile.run(bot, message, args);
-
-
-
-
-
-  //finds the word tickle in any string input
-  
-
-
-  let matchString = 'tickle';
-  if (string.toLowerCase().indexOf(matchString) != -1) { 
-    return message.channel.send("Tickle Tickle!");
-  }
-
-  //stop playing that video
-  let matchString2 = 'https://www.youtube.com/watch?v=K9bf4PT-aEk';
-  if (string.toLowerCase().indexOf(matchString2) != -1) { 
-    return message.channel.send("Bro, I swear...stop playing that stupid song!");
-  } 
 
 
 });
