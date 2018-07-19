@@ -160,7 +160,7 @@ bot.on("guildMemberAdd", async member => {
 
   let newRole = member.guild.roles.find(`name`, "Happy to be here");
   member.addRole(newRole); 
-  welcomechannel.send(`${member} is now ` + newRole + ` . Aren't we all?`);
+  welcomechannel.send(`${member} is now happy to be here. Aren't we all?`);
 
 });
 
