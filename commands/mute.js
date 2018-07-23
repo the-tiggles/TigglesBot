@@ -14,13 +14,13 @@ module.exports.run = async (bot, message, args) => {
 
 	if (!tomute) return message.reply("Couldn't find user.");
 	if(tomute.hasPermission("MANAGE_MESSAGES")) return message.reply("Can't mute them!");
-	let muterole = message.guild.roles.find(`name`, "muted");
+	let muterole = message.guild.roles.find(`name`, "Bottom Barrel Bitch");
 
 	// start of create role
 	if(!muterole) {
 		try {
 			muterole = await message.guild.createRole({
-				name: "muted",
+				name: "Bottom Barrel Bitch",
 				color: "#000000",
 				permissions:[]
 			});

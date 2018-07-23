@@ -35,7 +35,7 @@ bot.commands = new Discord.Collection();
 
 let coins = require("./coins.json");
 let xp = require("./xp.json");
-
+var antispam = require("discord-anti-spam");
 let purple = botconfig.purple;
 let cooldown = new Set();
 let cdseconds = 5;
@@ -292,16 +292,16 @@ bot.on("guildMemberRemove", async member => {
 
 
 
-var antispam = require("discord-anti-spam");
+
  
 antispam(bot, {
   warnBuffer: 3, //Maximum amount of messages allowed to send in the interval time before getting warned. 
-  maxBuffer: 5, // Maximum amount of messages allowed to send in the interval time before getting banned. 
+  maxBuffer: 20, // Maximum amount of messages allowed to send in the interval time before getting banned. 
   interval: 1000, // Amount of time in ms users can send a maximum of the maxBuffer variable before getting banned. 
   warningMessage: "! Bruh! You're spamming too much. Stahp.", // Warning message send to the user indicating they are going to fast. 
-  banMessage: "has been banned for spamming, anyone else?", // Ban message, always tags the banned user in front of it. 
+  banMessage: "spam is too stronk. Had to kick.", // Ban message, always tags the banned user in front of it. 
   maxDuplicatesWarning: 7, // Maximum amount of duplicate messages a user can send in a timespan before getting warned 
-  maxDuplicatesBan: 10 // Maximum amount of duplicate messages a user can send in a timespan before getting banned 
+  maxDuplicatesBan: 20 // Maximum amount of duplicate messages a user can send in a timespan before getting banned 
 });
  
 
