@@ -5,10 +5,11 @@ module.exports.run = async (bot, message, args) => {
   //!clear <number>
 
 
-  if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply("Sorry you can't use this command!");
+  if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply("Oof, you can't do this yet, bud. !");
+  if(!args[0]) return message.channel. send("oof");
   let dmUser = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
-  if(isNaN(args[0])) return message.channel.send("**ERROR:** _Please supply a valid number of messages to purge._");
-  if(args[0] > 100) return message.channel.send("**ERROR:** _Please supply a number less than 100._")
+  if(isNaN(args[0])) return message.channel.send("Bro, that ain't no number.");
+  if(args[0] > 100) return message.channel.send("That's waay too many messages. C'mon now.")
 
   await message.delete();
   await message.channel.bulkDelete(args[0])
