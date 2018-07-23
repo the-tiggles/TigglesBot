@@ -1,6 +1,7 @@
 {
-  "name": "tiggler",
+  "name": "tigglesbot",
   "dependencies": {
+    "discord-anti-spam": "^1.1.2",
     "discord.js": "^11.3.2",
     "ms": "^2.1.1"
   },
@@ -22,13 +23,4 @@
     "url": "https://github.com/tiggaaaaah/TigglesBot/issues"
   },
   "homepage": "https://github.com/tiggaaaaah/TigglesBot#readme"
-}
-
-{
-  "name": "nodemon",
-  "homepage": "http://nodemon.io",
-  "nodemonConfig": {
-    "ignore": ["warnings.json", "coins.json", "xp.json"],
-    "delay": "2500"
-  }
 }
