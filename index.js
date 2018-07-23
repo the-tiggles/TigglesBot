@@ -28,11 +28,19 @@
 const botconfig = require("./botconfig.json");
 const tokenfile = require("./token.json");
 const Discord = require("discord.js");
-const bot = new Discord.Client({ 
-  disableEveryone: true
-});
+const bot = new Discord.Client({disableEveryone: true});
 const fs = require("fs"); //require a file system
+
 bot.commands = new Discord.Collection();
+
+let coins = require("./coins.json");
+let xp = require("./xp.json");
+let purple = botconfig.purple;
+let cooldown = new Set();
+let cdseconds = 5;
+
+
+
 
 //this will boot up the bot and load the commands in the folder
 fs.readdir("./commands/", (err, files) => {
@@ -94,17 +102,110 @@ bot.on("message", async message => {
     //Send the username and message content to the user
     return userid.send(`(BotPM) ${message.author.username}: ${message.content}`); 
   }
- 
+
+
+  // fun little coin game 
+
+  if (!coins[message.author.id]){
+    coins[message.author.id] = {
+      coins: 0
+    };
+  }
+
+  let coinAmt = Math.floor(Math.random() * 15) + 1;
+  let baseAmt = Math.floor(Math.random() * 15) + 1;
+  // console.log(`${coinAmt} ; ${baseAmt}`);
+
+  if(coinAmt === baseAmt){
+    coins[message.author.id] = {
+      coins: coins[message.author.id].coins + coinAmt
+    };
+
+    // keep track of coins here
+    fs.writeFile("./coins.json", JSON.stringify(coins), (err) => {
+      if (err) console.log(err)
+    });
+
+    // coins embed
+    let coinEmbed = new Discord.RichEmbed()
+      .setAuthor(message.author.username)
+      .setColor("#0000FF")
+      .addField("💸", `${coinAmt} coins added!`);
+
+    //flash current coins
+    message.channel.send(coinEmbed).then(msg => {msg.delete(5000)});
+  }
+
+
+
+  // adding in an experience system
+  let xpAdd = Math.floor(Math.random() * 7) + 8;
+  // console.log(xpAdd);
+
+  if(!xp[message.author.id]){
+    xp[message.author.id] = {
+      xp: 0,
+      level: 1
+    };
+  }
+
+
+  // means that a level up will occur every 300 xp points
+  let curxp = xp[message.author.id].xp;
+  let curlvl = xp[message.author.id].level;
+  let nxtLvl = xp[message.author.id].level * 300;
+
+  xp[message.author.id].xp = curxp + xpAdd;
+  if (nxtLvl <= xp[message.author.id].xp){
+    xp[message.author.id].level = curlvl + 1;
+
+    //cool little level up message
+    let lvlup = new Discord.RichEmbed()
+      .setAuthor(`🏆 ${message.author.username} level Up! 🏆`, `${message.author.avatarURL}`)
+      // .setTitle(" 🏆 Level Up!")
+      .setColor(purple)
+      .addField("New Level", curlvl + 1);
+
+    message.channel.send(lvlup).then(msg => {msg.delete(5000)});
+
+       
+    
+  }
+  fs.writeFile("./xp.json", JSON.stringify(xp), (err) => {
+    if(err) console.log(err)
+  });
+
+  // console.log(`level is ${xp[message.author.id].level}`);
+
+
+  // eyes everywhere
+  console.log(`[ ${message.guild} | ${message.channel.name} ] ${message.author.username}: ${message.content}`);
+   
+
+
+
   let prefix = botconfig.prefix;
+  //spam control 
+
+  // if(!message.content.startsWith(prefix)) return;
+  if(cooldown.has(message.author.id)){
+    message.delete();
+    return message.reply("You have to wait 5 seconds between commands.")
+  }
+  if(!message.member.hasPermission("ADMINISTRATOR")) {
+    cooldown.add(message.author.id);
+  }
+
+
+
+
+  
   let messageArray = message.content.split(" ");
   let cmd = messageArray[0];
   let args = messageArray.slice(1);
   let string = message.content;
     
  
-  // eyes everywhere
-    console.log(`[ ${message.guild} | ${message.channel.name} ] ${message.author.username}: ${message.content}`);
-   
     
   
         // 
@@ -128,7 +229,18 @@ bot.on("message", async message => {
     return message.channel.send("Bro, I swear...stop playing that shitty song!");
   }  
 
+  //find repeats 
+  //still working on this thing
 
+  // let lastThing = message.author.lastMessage;
+  // let serverLast = message.channel.lastMessage;
+
+  // if (lastThing == serverLast) {
+  //   return message.channel.send("You just said that");
+  //   console.log("Found a repeat");
+
+  //   message.delete();
+  // }
 
 
 
@@ -142,6 +254,10 @@ bot.on("message", async message => {
   // instead of putting the commands in this file -
   let commandfile = bot.commands.get(cmd.slice(prefix.length));
   if (commandfile) commandfile.run(bot, message, args);
+
+  setTimeout(() => {
+    cooldown.delete(message.author.id)
+  }, cdseconds * 1000);
 
 
 });
