@@ -12,8 +12,11 @@
 // 0 - Dependencies
 // 1 - Start-up & Status
 // 2 - Commands
-//        --"Auto-Responses"
+//        -- Auto-Responses
 // 3 - Events
+//        -- Guild mate add
+//        -- Guild mate leave
+//        -- Spam
 //
 //
 //

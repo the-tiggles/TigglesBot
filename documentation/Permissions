@@ -1,0 +1,45 @@
+    
+    
+    
+    ADMINISTRATOR (implicitly has all permissions, and bypasses all channel overwrites)
+
+    MANAGE_WEBHOOKS
+    KICK_MEMBERS
+    BAN_MEMBERS
+    MANAGE_ROLES
+    MANAGE_ROLES_OR_PERMISSIONS (deprecated)
+    MANAGE_CHANNELS (edit and reorder channels)
+    MANAGE_GUILD (edit the guild information, region, etc.)
+    MENTION_EVERYONE
+
+
+    VIEW_AUDIT_LOG
+    MANAGE_NICKNAMES (change other members' nicknames)
+    DEAFEN_MEMBERS (deafen members across all voice channels)
+    MANAGE_MESSAGES (delete messages and reactions)
+    MUTE_MEMBERS (mute members across all voice channels)
+    MOVE_MEMBERS (move members between voice channels)
+
+
+    
+    MANAGE_EMOJIS
+
+
+    VIEW_CHANNEL
+    READ_MESSAGES (deprecated)
+    SEND_MESSAGES
+    SEND_TTS_MESSAGES 
+    ATTACH_FILES
+    CREATE_INSTANT_INVITE (create invitations to the guild)
+    EMBED_LINKS (links posted will have a preview embedded)
+    USE_EXTERNAL_EMOJIS (use emojis from different guilds)
+    EXTERNAL_EMOJIS (deprecated)
+    USE_VAD (use voice activity detection)  
+    CHANGE_NICKNAME 
+    SPEAK (speak in a voice channel)
+    CONNECT (connect to a voice channel)
+    READ_MESSAGE_HISTORY (view messages that were posted prior to opening Discord)
+    ADD_REACTIONS (add new reactions to messages)
+
+
+

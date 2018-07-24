@@ -24,7 +24,11 @@ module.exports.run = async (bot, message, args) => {
         .addField("XP", curxp, true)
         .setFooter(`${difference} XP till level ${curlvl + 1}`, message.author.displayAvatarURL);
 
-        message.channel.send(lvlEmbed).then(msg => {msg.delete(5000)});
+        //this will remove the !level spam
+        await message.delete();
+
+        //this will remove the embed spam
+        message.channel.send(lvlEmbed).then(msg => {msg.delete(7000)});
  
 }
  
