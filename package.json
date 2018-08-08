@@ -3,7 +3,8 @@
   "dependencies": {
     "discord-anti-spam": "^1.1.2",
     "discord.js": "^11.3.2",
-    "ms": "^2.1.1"
+    "ms": "^2.1.1",
+    "superagent": "^3.8.3"
   },
   "version": "1.0.0",
   "description": "A bot for all things Tiggles.",
