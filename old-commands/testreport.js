@@ -30,7 +30,9 @@ module.exports.run = async (bot, message, args) => {
   await message.delete();
   // if (message.author.id != '464785300221329418') return;
   // console.log("about to connect to mongoose");
-  mongoose.connect(tokenfile.mongooseCreds);
+  mongoose.connect('tokenfile.mongooseCreds', {
+    useNewUrlParser: true
+  });
   // console.log("we connected to mongoose")
   let rUser = message.mentions.members.first();
   if (!rUser) return message.reply("Cannot find that member, brusef.");
