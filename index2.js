@@ -36,8 +36,8 @@ const fs = require("fs"); //require a file system
 
 bot.commands = new Discord.Collection();
 
-let coins = require("./coins.json");
-let xp = require("./xp.json");
+// let coins = require("./coins.json");
+// let xp = require("./xp.json");
 var antispam = require("discord-anti-spam");
 let purple = botconfig.purple;
 let cooldown = new Set();
@@ -65,9 +65,7 @@ fs.readdir("./commands/", (err, files) => {
   });
   console.groupEnd();
 
-
 });
-
 
 
 // ================================
@@ -110,78 +108,73 @@ bot.on("message", async message => {
   }
 
 
-  // fun little coin game 
 
-  if (!coins[message.author.id]){
-    coins[message.author.id] = {
-      coins: 0
-    };
-  }
 
-  let coinAmt = Math.floor(Math.random() * 15) + 1;
-  let baseAmt = Math.floor(Math.random() * 15) + 1;
-  // console.log(`${coinAmt} ; ${baseAmt}`);
+  if (message.content.length) {
 
-  if(coinAmt === baseAmt){
-    coins[message.author.id] = {
-      coins: coins[message.author.id].coins + coinAmt
-    };
+    // adding in an experience system
 
-    // keep track of coins here
-    fs.writeFile("./coins.json", JSON.stringify(coins), (err) => {
-      if (err) console.log(err)
+    // the XP stuffs
+    // let xp = require("../xp.json");
+  
+    const xpschema = require("./models/xp.js");
+    const mongoose = require("mongoose");
+
+
+    mongoose.connect('tokenfile.mongooseCreds', {
+      useNewUrlParser: true
     });
 
-    // coins embed
-    let coinEmbed = new Discord.RichEmbed()
-      .setAuthor(message.author.username)
-      .setColor("#0000FF")
-      .addField("💸", `${coinAmt} coins added!`);
+    const xp = db.collection('inventory').find("xp");
+    let xpAdd = Math.floor(Math.random() * 7) + 8;
+    // console.log(xpAdd);
+    if (!xp[message.author.id]) {
+      xp[message.author.id] = {
+        xp: 0,
+        level: 1
+      };
+    }
+    // means that a level up will occur every 300 xp points
+    let curxp = xp[message.author.id].xp;
+    let curlvl = xp[message.author.id].level;
+    let nxtLvl = xp[message.author.id].level * 300;
+    xp[message.author.id].xp = curxp + xpAdd;
+    if (nxtLvl <= xp[message.author.id].xp) {
+      xp[message.author.id].level = curlvl + 1;
 
-    //flash current coins
-    message.channel.send(coinEmbed).then(msg => {msg.delete(5000)});
+      //cool little level up message
+      let lvlup = new Discord.RichEmbed()
+        .setAuthor(`🏆 ${message.author.username} level Up! 🏆`, `${message.author.avatarURL}`)
+        // .setTitle(" 🏆 Level Up!")
+        .setColor(purple)
+        .addField("New Level", curlvl + 1);
+      message.channel.send(lvlup).then(msg => { msg.delete(5000) });
+  
+    }
+  
+    const xplog = new xpschema({
+      _id: mongoose.Types.ObjectId(),
+      username: message.author.username,
+      userID: message.author.username.id,
+      xp: message.author.username,
+    })
+    xplog.save()
+      .then(result => console.log(result))
+      .catch(err => console.log(err));
   }
 
+// message.reply("that xp has been saved to the database!");
 
-
-  // adding in an experience system
-  let xpAdd = Math.floor(Math.random() * 7) + 8;
-  // console.log(xpAdd);
-
-  if(!xp[message.author.id]){
-    xp[message.author.id] = {
-      xp: 0,
-      level: 1
-    };
-  }
+// end XP stuffs
 
 
   // means that a level up will occur every 300 xp points
-  let curxp = xp[message.author.id].xp;
-  let curlvl = xp[message.author.id].level;
-  let nxtLvl = xp[message.author.id].level * 300;
-
-  xp[message.author.id].xp = curxp + xpAdd;
-  if (nxtLvl <= xp[message.author.id].xp){
-    xp[message.author.id].level = curlvl + 1;
-
-    //cool little level up message
-    let lvlup = new Discord.RichEmbed()
-      .setAuthor(`🏆 ${message.author.username} level Up! 🏆`, `${message.author.avatarURL}`)
-      // .setTitle(" 🏆 Level Up!")
-      .setColor(purple)
-      .addField("New Level", curlvl + 1);
-
-    message.channel.send(lvlup).then(msg => {msg.delete(5000)});
-
-       
-    
-  }
-  fs.writeFile("./xp.json", JSON.stringify(xp), (err) => {
-    if(err) console.log(err)
-  });
 
   // console.log(`level is ${xp[message.author.id].level}`);
+
+
+
+  
 
 
   // eyes everywhere

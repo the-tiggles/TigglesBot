@@ -3,6 +3,8 @@
   "dependencies": {
     "discord-anti-spam": "^1.1.2",
     "discord.js": "^11.3.2",
+    "mongo": "^0.1.0",
+    "mongodb": "^3.1.10",
     "mongoose": "^5.4.0",
     "ms": "^2.1.1",
     "superagent": "^3.8.3"
