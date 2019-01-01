@@ -1,7 +1,7 @@
 /**
  *
  * TigglesBot
- * @link https://github.com/tiggaaaaah/TigglesBot
+ * link https://github.com/tiggaaaaah/TigglesBot
  * Design/Dev: Tiggles 
  *
  */
