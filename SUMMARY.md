@@ -1,6 +1,6 @@
 # Table of contents
 
-* [What I Node](README.md)
+* [Tiggles ツ  Projects](README.md)
 
 ## TigglesBot
 

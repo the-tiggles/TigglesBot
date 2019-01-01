@@ -1,8 +1,8 @@
 ---
-description: "This gitbook is more of a documentation to myself to help me understand/walkthrough some node concepts and whatnot. Cheers. \uD83C\uDF7B"
+description: "Hallo! If you're reading this, you probably want to learn or check out some things about the code I've been using for some Discord Bots. I'm no pro, but here's what I know. Cheers. \uD83C\uDF7B"
 ---
 
-# What I Node
+# Tiggles ツ  Projects
 
 ## Start
 
