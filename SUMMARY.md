@@ -8,5 +8,5 @@
 
 ## TigglesTunes
 
-* [TigglesTunes](tigglestunes/tigglestunes.md)
+* [Introduction](tigglestunes/tigglestunes.md)
 
