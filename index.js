@@ -298,6 +298,66 @@ bot.on("guildMemberRemove", async member => {
 
 
 
+// ================================
+//  4 - Music
+// ================================
+
+
+const YTDL = require("ytdl-core");
+var servers = {};
+
+
+
+function play(connection, message) {
+  var server = servers[message.guild.id];
+  
+  server.dispatcher = connection.playStream(YTDL(server.queue[0], {filter: "audioonly"}));
+  
+  server.queue.shift();
+  
+  server.dispatcher.on("end", function() {
+    if (server.queue[0]) play(connection, message);
+    else connection.disconnect();
+  });
+}
+
+bot.on("message", function(message) {
+  var args = message.content.substring((botconfig.prefix).length).split(" ");
+  
+  switch (args[0].toLowerCase()) {
+    case "tplay":
+      if (!args[1]) {
+        message.channel.sendMessage("Please provide a link");
+        return;
+      }
+      if (!message.member.voiceChannel) {
+        message.channel.sendMessage("You gotsta be in a voice channel, homie.");
+        return;
+      }
+      if(!server[message.guild.id]) servers[message.guild.id] = {
+        queue: []
+      };
+      var server = server[message.guild.id];
+      
+      server.queue.push(args[1]);
+      
+      if (!message.guild.voiceConnection) message.member.voiceChannel.join().then(function(connection) {
+        play(connection, message);
+      });
+      break;
+    case "skip": 
+      var server = servers[message.guild.id];
+      if(server.dispatcher) server.dispatcher.end();
+      break;
+    case "stop":
+      var server = servers[message.guild.id];
+      
+      if (message.guild.voiceConnection) message.guild.voiceConnection.disconnect();
+      break;
+   }
+  
+});
+
  
 antispam(bot, {
   warnBuffer: 3, //Maximum amount of messages allowed to send in the interval time before getting warned. 
